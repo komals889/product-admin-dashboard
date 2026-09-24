@@ -10,6 +10,7 @@ export default function ProductsLayout({ children }) {
   const router = useRouter();
 
   useEffect(() => {
+    console.log("ProductsLayout render:", { user, loading });
     if (!loading && !user) {
       router.replace("/login");
     }

@@ -4,13 +4,22 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext(null);
 
-export function AuthProvider({ children}) {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // true while we check localStorage on first load
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   const savedUser = localStorage.getItem("user");
+  //   if (token && savedUser) {
+  //     setUser(JSON.parse(savedUser));
+  //   }
+  //   setLoading(false);
+  // }, []);
   useEffect(() => {
     const token = localStorage.getItem("token");
     const savedUser = localStorage.getItem("user");
+    console.log("AuthContext check:", { token, savedUser });
     if (token && savedUser) {
       setUser(JSON.parse(savedUser));
     }
